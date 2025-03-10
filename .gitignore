@@ -3,13 +3,13 @@ node_modules
 package-lock.json
 
 # client
-/client/coverage
-/client/dist
+# /client/coverage
+# /client/dist
 
 # server
-/server/logs/*
-/server/src/uploads/*
-/server/coverage
+# /server/logs/*
+# /server/src/uploads/*
+# /server/coverage
 
 # local env files
 .env*
