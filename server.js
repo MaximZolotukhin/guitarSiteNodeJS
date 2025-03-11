@@ -18,6 +18,12 @@ app.get('/about', (req, res) => {
   res.sendFile(path.join(__dirname, 'views', 'about.html'))
 })
 
+app.get('/add', (req, res) => {
+  res.status(200)
+
+  res.sendFile(path.join(__dirname, 'views', 'add.html'))
+})
+
 // Запуск сервера
 app.listen(PORT, () => {
   console.log(`Server start on port ${PORT}`)
