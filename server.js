@@ -12,6 +12,10 @@ const hbs = exphbs.create({
   defaultLayout: 'main',
   extname: 'hbs',
 })
+
+const homeRouters = require('./routes/home')
+const addRouters = require('./routes/add')
+const contactsRouters = require('./routes/contacts')
 //Регистрация движка
 app.engine('hbs', hbs.engine)
 // Модуль который будет отрисовывать HTML страницы
@@ -21,26 +25,10 @@ app.set('views', 'views')
 // Регистрация папки public
 app.use(express.static('public'))
 
-app.get('/', (req, res) => {
-  res.render('index', {
-    title: 'Главная страница',
-    isHome: true,
-  })
-})
-
-app.get('/add', (req, res) => {
-  res.render('add', {
-    title: 'Добавить товар',
-    isAdd: true,
-  })
-})
-
-app.get('/contact', (req, res) => {
-  res.render('contact', {
-    title: 'Контакты',
-    isContact: true,
-  })
-})
+//Подключаю роуты
+app.use('/', homeRouters)
+app.use('/add', addRouters)
+app.use('/contacts', contactsRouters)
 
 // Запуск сервера
 app.listen(PORT, () => {
