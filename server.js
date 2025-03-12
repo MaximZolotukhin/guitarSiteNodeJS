@@ -22,15 +22,24 @@ app.set('views', 'views')
 app.use(express.static('public'))
 
 app.get('/', (req, res) => {
-  res.render('index')
-})
-
-app.get('/about', (req, res) => {
-  res.render('about')
+  res.render('index', {
+    title: 'Главная страница',
+    isHome: true,
+  })
 })
 
 app.get('/add', (req, res) => {
-  res.render('add')
+  res.render('add', {
+    title: 'Добавить товар',
+    isAdd: true,
+  })
+})
+
+app.get('/contact', (req, res) => {
+  res.render('contact', {
+    title: 'Контакты',
+    isContact: true,
+  })
 })
 
 // Запуск сервера

@@ -1,9 +1,24 @@
 <nav>
   <div class='nav-wrapper'>
     <ul id='nav-mobile' class='left hide-on-med-and-down'>
-      <li><a href='/'>Главная</a></li>
-      <li><a href='/add'>Добавить товар</a></li>
-      <li><a href='/about'>Контакты</a></li>
+      {{#if isHome}}
+        <li class='active'><a href='/'>Главная</a></li>
+      {{else}}
+        <li><a href='/'>Главная</a></li>
+      {{/if}}
+
+      {{#if isAdd}}
+        <li class='active'><a href='/add'>Добавить товар</a></li>
+      {{else}}
+        <li><a href='/add'>Добавить товар</a></li>
+      {{/if}}
+
+      {{#if isContact}}
+        <li class='active'><a href='/contact'>Контакты</a></li>
+      {{else}}
+        <li><a href='/contact'>Контакты</a></li>
+      {{/if}}
+
     </ul>
   </div>
 </nav>
