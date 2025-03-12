@@ -18,6 +18,8 @@ app.engine('hbs', hbs.engine)
 app.set('view engine', 'hbs')
 // Настройка папки по умолчанию
 app.set('views', 'views')
+// Регистрация папки public
+app.use(express.static('public'))
 
 app.get('/', (req, res) => {
   res.render('index')
