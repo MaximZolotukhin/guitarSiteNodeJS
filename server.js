@@ -4,24 +4,31 @@ const app = express()
 const path = require('path')
 
 // Объявляем порт
-const PORT = process.env.PORT | 3000
+const PORT = process.env.PORT | 3001
+
+// Настройка handelbars
+const exphbs = require('express-handlebars')
+const hbs = exphbs.create({
+  defaultLayout: 'main',
+  extname: 'hbs',
+})
+//Регистрация движка
+app.engine('hbs', hbs.engine)
+// Модуль который будет отрисовывать HTML страницы
+app.set('view engine', 'hbs')
+// Настройка папки по умолчанию
+app.set('views', 'views')
 
 app.get('/', (req, res) => {
-  res.status(200)
-
-  res.sendFile(path.join(__dirname, 'views', 'index.html'))
+  res.render('index')
 })
 
 app.get('/about', (req, res) => {
-  res.status(200)
-
-  res.sendFile(path.join(__dirname, 'views', 'about.html'))
+  res.render('about')
 })
 
 app.get('/add', (req, res) => {
-  res.status(200)
-
-  res.sendFile(path.join(__dirname, 'views', 'add.html'))
+  res.render('add')
 })
 
 // Запуск сервера
