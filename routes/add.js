@@ -1,6 +1,8 @@
 const { Router } = require('express')
 const router = Router()
 
+const Products = require('../models/products')
+
 router.get('/', (req, res) => {
   res.render('add', {
     title: 'Добавить товар',
@@ -8,9 +10,10 @@ router.get('/', (req, res) => {
   })
 })
 
-router.post('/', (req, res) => {
-  console.log(req.body, 'Запрос')
+router.post('/', async (req, res) => {
+  const products = new Products(req.body)
 
+  await products.save()
   res.redirect('/catalog')
 })
 

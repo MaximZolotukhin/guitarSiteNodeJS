@@ -5,7 +5,8 @@
   </header>
   <main>
     <article>
-      <section>
+      <article class="main-block">
+      <section class="main-left-block">
         <div>
           <h2>Катергории</h2>
         </div>
@@ -13,7 +14,7 @@
           <h2>Производители</h2>
         </div>
       </section>
-      <section>
+      <section class="main-right-block">
         <form action="/add" method="POST">
         <p>Добавить гитару</p>
 
@@ -33,6 +34,11 @@
           <input id='priceGuitar' type='text' name='priceGuitar' class='validate' required min="1"/>
           <label for='priceGuitar'>Цена гитары</label>
           <span class='helper-text' data-error='Цена гитары'></span>
+        </div>
+        <div class='input-field'>
+          <input id='imgGuitar' type='text' name='imgGuitar' class='validate' required />
+          <label for='imgGuitar'>Фото гитары</label>
+          <span class='helper-text' data-error='Фото гитары'></span>
         </div>
        {{!--TODO Добавить кнопку с модальным окном для добавлени характеристик --}}
        {{!-- Характеристики:
