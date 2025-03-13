@@ -15,6 +15,7 @@ const hbs = exphbs.create({
 
 const homeRouters = require('./routes/home')
 const addRouters = require('./routes/add')
+const catalogRouters = require('./routes/catalog')
 const contactsRouters = require('./routes/contacts')
 //Регистрация движка
 app.engine('hbs', hbs.engine)
@@ -22,12 +23,15 @@ app.engine('hbs', hbs.engine)
 app.set('view engine', 'hbs')
 // Настройка папки по умолчанию
 app.set('views', 'views')
+
 // Регистрация папки public
 app.use(express.static('public'))
-
+//Обработка POST запросов
+app.use(express.urlencoded({ extended: true }))
 //Подключаю роуты
 app.use('/', homeRouters)
 app.use('/add', addRouters)
+app.use('/catalog', catalogRouters)
 app.use('/contacts', contactsRouters)
 
 // Запуск сервера

@@ -13,10 +13,16 @@
         <li><a href='/add'>Добавить товар</a></li>
       {{/if}}
 
-      {{#if isContact}}
-        <li class='active'><a href='/contact'>Контакты</a></li>
+      {{#if isCatolog}}
+        <li class='active'><a href='/catalog'>Каталог</a></li>
       {{else}}
-        <li><a href='/contact'>Контакты</a></li>
+        <li><a href='/catalog'>Каталог</a></li>
+      {{/if}}
+
+      {{#if isContact}}
+        <li class='active'><a href='/contacts'>Контакты</a></li>
+      {{else}}
+        <li><a href='/contacts'>Контакты</a></li>
       {{/if}}
 
     </ul>

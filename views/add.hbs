@@ -14,7 +14,47 @@
         </div>
       </section>
       <section>
-        <h2>Название гитары</h2>
+        <form action="/add" method="POST">
+        <p>Добавить гитару</p>
+
+        <div class='input-field'>
+          <input id='nameGuitar' type='text' name='nameGuitar' class='validate' required />
+          <label for='nameGuitar'>Название гитары</label>
+          <span class='helper-text' data-error='Введите название'></span>
+        </div>
+       {{!--TODO Сделать селект с списком гитар + Добавить кнопку для добавление новой фирмы гираты --}}
+       {{!--TODO Сделать селект с списком типов играт и так же кнопку добавления гитары --}}
+        <div class='input-field'>
+          <input id='descriptionGuitar' type='text' name='descriptionGuitar' class='validate' required />
+          <label for='descriptionGuitar'>Описание гитары</label>
+          <span class='helper-text' data-error='Введите описание гитары'></span>
+        </div>
+        <div class='input-field'>
+          <input id='priceGuitar' type='text' name='priceGuitar' class='validate' required min="1"/>
+          <label for='priceGuitar'>Цена гитары</label>
+          <span class='helper-text' data-error='Цена гитары'></span>
+        </div>
+       {{!--TODO Добавить кнопку с модальным окном для добавлени характеристик --}}
+       {{!-- Характеристики:
+          Материал корпуса: Красное дерево
+          Топ: Кленовый 
+          Материал грифа: Клен
+          Материал накладки грифа: Палисандр
+          Мензура: 24,75"/628,7 мм
+          Ширина грифа: 1.695"/43 мм
+          Количество ладов: 22
+          Профиль грифа: Slim Taper
+          Верхний порожек: Tektoid
+          Струнодержатель: Tune-O-Matik алюминиевый ﻿
+          Колковая механика: Vintage Deluxe w/ Keystone Buttons﻿
+          Звукосниматели: 490R и 490T
+          Управление: 2 ручки громкости, 2 ручки тона
+          Инструмент поставляется в фирменном чехле.
+          Комплектуется анкерным ключом и всей необходимой документацией.
+          Страна-производитель: США --}}
+          <button type="submit" class="btn btn-primary">Отправить</button>
+          <button type="reset" class="btn red">Очистить форму</button>
+      </form>
       </section>
     </article>
   </main>
