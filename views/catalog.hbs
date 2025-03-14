@@ -1,6 +1,6 @@
 <body>
-  <header>
-    <h1>Сайт Музыкальных инструментов</h1>
+  <header class="header">
+    <h1 class="header-h1">Сайт Музыкальных инструментов</h1>
     {{> navbar}}
   </header>
   <main>
@@ -15,6 +15,29 @@
       </section>
       <section class="main-right-block">
         <h2>Каталог товаров</h2>
+        {{#if products.length}}
+        <div class="row">
+        {{#each products}}
+        {{!-- TODO переделать стили под свои --}}
+        <div class="col s6">
+          <div class="card">
+            <div class="card-image">
+              <img src="{{imgGuitar}}" alt="{{nameGuitar}}">
+            </div>
+            <div class="card-content">
+              <span class="card-title">{{nameGuitar}}</span>
+              <p class="descriptio">{{descriptionGuitar}}</p>
+              <p class="price">{{priceGuitar}}</p>
+            </div>
+            <div class="card-action"><a href="/products/{{id}}">Подробее</a></div>
+          </div>
+        </div>
+        {{/each}}
+        </div>
+        {{else}}
+          <p>Товаров пока нет</p>
+        {{/if}}
+         
       </section>
     </article>
   </main>

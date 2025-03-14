@@ -1,1 +1,16 @@
-[{"nameGuitar":"Gibson","descriptionGuitar":"coll","priceGuitar":"123000","imgGuitar":"https://gitaraclub.ru/upload/iblock/6e3/s53nrwipkdeioj3qyeohiquqdob153dr.jpg","id":"3c9f3819-e29c-403b-ae8b-aa1a505851fd"}]
+[
+  {
+    "nameGuitar": "Gibson",
+    "descriptionGuitar": "coll",
+    "priceGuitar": "123000",
+    "imgGuitar": "https://gitaraclub.ru/upload/iblock/6e3/s53nrwipkdeioj3qyeohiquqdob153dr.jpg",
+    "id": "3c9f3819-e29c-403b-ae8b-aa1a505851fd"
+  },
+  {
+    "nameGuitar": "Fender",
+    "descriptionGuitar": "Stratocaster",
+    "priceGuitar": "95000",
+    "imgGuitar": "https://music-sklad.ru/wp-content/uploads/2017/04/58fce7658015b_63d3d6ad32f613c26cf6fe25e9fc2f1f-1.jpg",
+    "id": "95f2fbaf-d224-4f35-aea4-0359af76034d"
+  }
+]
