@@ -1,7 +1,7 @@
 const { Router } = require('express')
 const router = Router()
 
-const Products = require('../models/products')
+const Products = require('../models/productsModel')
 
 router.get('/', (req, res) => {
   res.render('add', {

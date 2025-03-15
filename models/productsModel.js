@@ -4,11 +4,12 @@ const fs = require('fs')
 
 // TODO Cвязать с бд specification
 class Products {
-  constructor({ nameGuitar, descriptionGuitar, priceGuitar, imgGuitar }) {
-    this.nameGuitar = nameGuitar
-    this.descriptionGuitar = descriptionGuitar
-    this.priceGuitar = priceGuitar
-    this.imgGuitar = imgGuitar
+  constructor({ manufactered, modelProduct, descriptionProduct, priceProduct, imgProduct }) {
+    this.manufactered = manufactered
+    this.modelProduct = modelProduct
+    this.descriptionProduct = descriptionProduct
+    this.priceProduct = priceProduct
+    this.imgProduct = imgProduct
     this.uuid = uuidv4()
   }
 
@@ -18,16 +19,17 @@ class Products {
    */
   toJSON() {
     return {
-      nameGuitar: this.nameGuitar,
-      descriptionGuitar: this.descriptionGuitar,
-      priceGuitar: this.priceGuitar,
-      imgGuitar: this.imgGuitar,
+      manufactered: this.manufactered,
+      modelProduct: this.modelProduct,
+      descriptionProduct: this.descriptionProduct,
+      priceProduct: this.priceProduct,
+      imgProduct: this.imgProduct,
       id: this.uuid,
     }
   }
 
   printInfo() {
-    console.log(this.nameGuitar, this.descriptionGuitar, this.priceGuitar, this.imgGuitar, 'printInfo')
+    console.log(this.manufactered, this.modelProduct, this.descriptionProduct, this.priceProduct, this.imgProduct, this.uuid, 'printInfo')
   }
 
   /**
@@ -35,6 +37,8 @@ class Products {
    */
   async save() {
     const products = await Products.getAll()
+
+    console.log(products)
 
     products.push(this.toJSON())
     console.log(products)
@@ -60,10 +64,25 @@ class Products {
         if (err) {
           reject.err
         } else {
-          resolve(JSON.parse(content))
+          if (!content) {
+            content = []
+            resolve(content)
+          } else {
+            resolve(JSON.parse(content))
+          }
         }
       })
     })
+  }
+
+  /**
+   * Получение данных по id
+   * @param {*} id
+   */
+  static async getById(id) {
+    //Получаю данные курсов
+    const products = await Products.getAll()
+    return products.find((product) => product.id === id)
   }
 }
 

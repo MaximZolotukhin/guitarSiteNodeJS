@@ -19,25 +19,30 @@
         <p>Добавить гитару</p>
 
         <div class='input-field'>
-          <input id='nameGuitar' type='text' name='nameGuitar' class='validate' required />
-          <label for='nameGuitar'>Название гитары</label>
+          <input id='manufactered' type='text' name='manufactered' class='validate' required />
+          <label for='manufactered'>Производитель</label>
+          <span class='helper-text' data-error='Введите название'></span>
+        </div>
+        <div class='input-field'>
+          <input id='modelProduct' type='text' name='modelProduct' class='validate' required />
+          <label for='modelProduct'>Модель</label>
           <span class='helper-text' data-error='Введите название'></span>
         </div>
        {{!--TODO Сделать селект с списком гитар + Добавить кнопку для добавление новой фирмы гираты --}}
        {{!--TODO Сделать селект с списком типов играт и так же кнопку добавления гитары --}}
         <div class='input-field'>
-          <input id='descriptionGuitar' type='text' name='descriptionGuitar' class='validate' required />
-          <label for='descriptionGuitar'>Описание гитары</label>
+          <input id='descriptionProduct' type='text' name='descriptionProduct' class='validate' required />
+          <label for='descriptionProduct'>Описание</label>
           <span class='helper-text' data-error='Введите описание гитары'></span>
         </div>
         <div class='input-field'>
-          <input id='priceGuitar' type='text' name='priceGuitar' class='validate' required min="1"/>
-          <label for='priceGuitar'>Цена гитары</label>
+          <input id='priceProduct' type="number" name='priceProduct' class='validate' required min="1"/>
+          <label for='priceProduct'>Цена гитары</label>
           <span class='helper-text' data-error='Цена гитары'></span>
         </div>
         <div class='input-field'>
-          <input id='imgGuitar' type='text' name='imgGuitar' class='validate' required />
-          <label for='imgGuitar'>Фото гитары</label>
+          <input id='imgProduct' type='url' name='imgProduct' class='validate' required />
+          <label for='imgProduct'>Фото гитары</label>
           <span class='helper-text' data-error='Фото гитары'></span>
         </div>
        {{!--TODO Добавить кнопку с модальным окном для добавлени характеристик --}}

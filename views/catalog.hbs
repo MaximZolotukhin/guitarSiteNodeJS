@@ -22,14 +22,15 @@
         <div class="col s6">
           <div class="card">
             <div class="card-image">
-              <img src="{{imgGuitar}}" alt="{{nameGuitar}}">
+              <img src="{{imgProduct}}" alt="{{modelProduct}}">
             </div>
             <div class="card-content">
-              <span class="card-title">{{nameGuitar}}</span>
+              <span class="card-title">{{manufactered}}</span>
+              <p class="model">{{modelProduct}}</p>
               <p class="descriptio">{{descriptionGuitar}}</p>
-              <p class="price">{{priceGuitar}}</p>
+              <p class="price">{{priceProduct}}</p>
             </div>
-            <div class="card-action"><a href="/products/{{id}}">Подробее</a></div>
+            <div class="card-action"><a href="/catalog/{{id}}" _target='blank'>Подробнее</a></div>
           </div>
         </div>
         {{/each}}

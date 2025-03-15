@@ -1,16 +1,18 @@
 [
   {
-    "nameGuitar": "Gibson",
-    "descriptionGuitar": "coll",
-    "priceGuitar": "123000",
-    "imgGuitar": "https://gitaraclub.ru/upload/iblock/6e3/s53nrwipkdeioj3qyeohiquqdob153dr.jpg",
-    "id": "3c9f3819-e29c-403b-ae8b-aa1a505851fd"
+    "manufactered": "Gibson",
+    "modelProduct": "Les Pol",
+    "descriptionProduct": "Одна из самых узнаваемых гитар за всю историю рок музыки возвращается в новом прочтении. Инженеры Gibson сохраняя традиции 60-х, 70-х годов разработали современный инструмент отвечающий актуальным требованиям исполнителей.",
+    "priceProduct": "125000",
+    "imgProduct": "https://gitaraclub.ru/upload/iblock/6e3/s53nrwipkdeioj3qyeohiquqdob153dr.jpg",
+    "id": "24c8c35b-8b87-4c02-a9f5-e94871aa59a9"
   },
   {
-    "nameGuitar": "Fender",
-    "descriptionGuitar": "Stratocaster",
-    "priceGuitar": "95000",
-    "imgGuitar": "https://music-sklad.ru/wp-content/uploads/2017/04/58fce7658015b_63d3d6ad32f613c26cf6fe25e9fc2f1f-1.jpg",
-    "id": "95f2fbaf-d224-4f35-aea4-0359af76034d"
+    "manufactered": "Fender",
+    "modelProduct": "VINTERA '60s Stratocaster 3-Color Sunburst",
+    "descriptionProduct": "FENDER VINTERA '60S STRATOCASTER - электрогитара в винтажном стиле, созданная для музыкантов, которые хотят получить звук и стиль золотой эры Fender. Представленная в 2019 году модификация Vintera обладает характерными чертами гитар шестидесятых годов",
+    "priceProduct": "95000",
+    "imgProduct": "https://music-sklad.ru/wp-content/uploads/2017/04/58fce7658015b_63d3d6ad32f613c26cf6fe25e9fc2f1f-1.jpg",
+    "id": "7af91e60-cf90-4bd4-9441-d4e756f226a1"
   }
 ]
