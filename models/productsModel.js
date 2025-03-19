@@ -38,13 +38,10 @@ class Products {
   async save() {
     const products = await Products.getAll()
 
-    console.log(products)
-
     products.push(this.toJSON())
-    console.log(products)
 
     return new Promise((resolve, reject) => {
-      fs.writeFile(path.join(__dirname, '..', 'data', 'poducts.json'), JSON.stringify(products), (err) => {
+      fs.writeFile(path.join(__dirname, '..', 'data', 'products.json'), JSON.stringify(products), (err) => {
         if (err) {
           reject(err)
         } else {
@@ -60,7 +57,7 @@ class Products {
    */
   static getAll() {
     return new Promise((resolve, reject) => {
-      fs.readFile(path.join(__dirname, '..', 'data', 'poducts.json'), 'utf-8', (err, content) => {
+      fs.readFile(path.join(__dirname, '..', 'data', 'products.json'), 'utf-8', (err, content) => {
         if (err) {
           reject.err
         } else {
@@ -86,12 +83,13 @@ class Products {
   }
 
   static async update(product) {
-    const products = Products.getAll()
+    const products = await Products.getAll()
     const idx = products.findIndex((data) => data.id === product.id)
     products[idx] = product
+    console.log(products, '!!!!!')
 
     return new Promise((resolve, reject) => {
-      fs.writeFile(path.join(__dirname, '..', 'data', 'products.js'), JSON.stringify(products), (err) => {
+      fs.writeFile(path.join(__dirname, '..', 'data', 'products.json'), JSON.stringify(products), (err) => {
         if (err) {
           reject(err)
         } else {

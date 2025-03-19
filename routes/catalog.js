@@ -4,7 +4,6 @@ const Products = require('../models/productsModel')
 
 router.get('/', async (req, res) => {
   const products = await Products.getAll()
-  console.log(products)
 
   res.render('catalog', {
     title: 'Католог товаров',
