@@ -84,6 +84,22 @@ class Products {
     const products = await Products.getAll()
     return products.find((product) => product.id === id)
   }
+
+  static async update(product) {
+    const products = Products.getAll()
+    const idx = products.findIndex((data) => data.id === product.id)
+    products[idx] = product
+
+    return new Promise((resolve, reject) => {
+      fs.writeFile(path.join(__dirname, '..', 'data', 'products.js'), JSON.stringify(products), (err) => {
+        if (err) {
+          reject(err)
+        } else {
+          resolve()
+        }
+      })
+    })
+  }
 }
 
 module.exports = Products

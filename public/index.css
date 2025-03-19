@@ -14,7 +14,7 @@
 }
 
 .main-right-block {
-  width: 65%;
+  width: 70%;
 }
 
 .header h1 {
@@ -46,10 +46,17 @@
 }
 
 .product img {
-  max-width: 500px;
-  height: auto;
+  max-height: 100%;
+  max-width: 100%;
+  object-fit: contain;
 }
 
 .product .price.big {
   font-size: 2.5rem;
+}
+
+.card-action.action {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }

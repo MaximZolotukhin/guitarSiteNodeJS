@@ -13,6 +13,26 @@ router.get('/', async (req, res) => {
   })
 })
 
+//Обработчитк редактирование продукта
+router.get('/:id/edit', async (req, res) => {
+  if (!req.query.allow) {
+    return res.redirect('/')
+  }
+
+  const product = await Products.getById(req.params.id)
+
+  res.render('product-edit', {
+    title: `Редактировать ${product.title}`,
+    product,
+  })
+})
+
+router.post('/edit', async (req, res) => {
+  //Метод обработчика в модели productsModel
+  await Products.update(req.body)
+  res.redirect('/catalog')
+})
+
 //Получени отдельной странички с товаром
 router.get('/:id', async (req, res) => {
   //Создаем модель продуктов
