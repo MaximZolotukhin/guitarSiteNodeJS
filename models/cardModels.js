@@ -43,6 +43,32 @@ class Card {
       })
     })
   }
+
+  static async remove(id) {
+    const card = await Card.fetchCartProducts()
+
+    const idx = card.products.findIndex((data) => (data.id = id))
+
+    const product = card.products[idx]
+    if (product.count === 1) {
+      card.products.filter((data) => data.id !== data)
+    } else {
+      card.products[idx].count--
+    }
+
+    card.price -= card.price
+
+    //сохранение данных в корзину
+    return new Promise((resolve, reject) => {
+      fs.writeFile(path.join(__dirname, '..', 'data', 'card.json'), JSON.stringify(card), (err) => {
+        if (err) {
+          reject(err)
+        } else {
+          resolve(card)
+        }
+      })
+    })
+  }
 }
 
 module.exports = Card
