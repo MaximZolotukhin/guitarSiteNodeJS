@@ -29,7 +29,7 @@ class Products {
   }
 
   printInfo() {
-    console.log(this.manufactered, this.modelProduct, this.descriptionProduct, this.priceProduct, this.imgProduct, this.uuid, 'printInfo')
+    this.manufactered, this.modelProduct, this.descriptionProduct, this.priceProduct, this.imgProduct, this.uuid, 'printInfo'
   }
 
   /**
@@ -86,7 +86,6 @@ class Products {
     const products = await Products.getAll()
     const idx = products.findIndex((data) => data.id === product.id)
     products[idx] = product
-    console.log(products, '!!!!!')
 
     return new Promise((resolve, reject) => {
       fs.writeFile(path.join(__dirname, '..', 'data', 'products.json'), JSON.stringify(products), (err) => {

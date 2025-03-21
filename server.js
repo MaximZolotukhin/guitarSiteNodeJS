@@ -17,6 +17,7 @@ const homeRouters = require('./routes/home')
 const addRouters = require('./routes/add')
 const catalogRouters = require('./routes/catalog')
 const contactsRouters = require('./routes/contacts')
+const cardRouters = require('./routes/card')
 //Регистрация движка
 app.engine('hbs', hbs.engine)
 // Модуль который будет отрисовывать HTML страницы
@@ -25,7 +26,7 @@ app.set('view engine', 'hbs')
 app.set('views', 'views')
 
 // Регистрация папки public
-app.use(express.static('public'))
+app.use(express.static(path.join(__dirname, 'public')))
 //Обработка POST запросов
 app.use(express.urlencoded({ extended: true }))
 //Подключаю роуты
@@ -33,6 +34,7 @@ app.use('/', homeRouters)
 app.use('/add', addRouters)
 app.use('/catalog', catalogRouters)
 app.use('/contacts', contactsRouters)
+app.use('/card', cardRouters)
 
 // Запуск сервера
 app.listen(PORT, () => {
