@@ -2,6 +2,7 @@
 const express = require('express')
 const app = express()
 const path = require('path')
+const mongoose = require('mongoose')
 
 // Объявляем порт
 const PORT = process.env.PORT | 3001
@@ -36,7 +37,18 @@ app.use('/catalog', catalogRouters)
 app.use('/contacts', contactsRouters)
 app.use('/card', cardRouters)
 
-// Запуск сервера
-app.listen(PORT, () => {
-  console.log(`Server start on port ${PORT}`)
-})
+// Подключение к БД через mongoose
+async function start() {
+  try {
+    const uri = 'mongodb://guitar:guitar777@localhost:27417/?authMechanism=DEFAULT'
+    await mongoose.connect(uri)
+    console.log('Connected to MongoDB')
+
+    // Слушатель событий
+    app.listen(3000, () => {
+      console.log(`Server is running on port ${PORT}`)
+    })
+  } catch (err) {
+    console.log(err)
+  }
+}
