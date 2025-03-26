@@ -66,6 +66,10 @@
           <input type="hidden" name="id" id="id" value="{{product._id}}">
           <button type="submit" class="btn btn-primary">Сохранить изменения</button>
         </form>
+        <form action="/catalog/remove" method="post" class="form-remove-button">
+          <input type="hidden" id="id" name="id" value="{{product._id}}">
+          <button type="submit" class="btn red">Удалить продукт</button>
+        </form>
       </section>
     </article>
   </main>

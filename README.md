@@ -11,3 +11,5 @@ docker run -d --name guitarShopDB -p 27417:27017
 -v $HOME/DOCKER/dockerMongoDB/datafiles602:/data/db mongo:latest
 
 'mongodb://admin:admin777@localhost:27418/coursesShop?authSource=admin&authMechanism=SCRAM-SHA-256'
+
+TODO - будет переделан всесь интрефейс, после реализации Бэкенда

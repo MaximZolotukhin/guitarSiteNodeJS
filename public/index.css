@@ -55,6 +55,10 @@
   font-size: 2.5rem;
 }
 
+.form-remove-button {
+  margin-top: 20px;
+}
+
 .card-action.action {
   display: flex;
   align-items: center;

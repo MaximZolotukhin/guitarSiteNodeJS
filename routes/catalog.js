@@ -32,6 +32,16 @@ router.post('/edit', async (req, res) => {
   res.redirect('/catalog')
 })
 
+//Удаление объекта
+router.post('/remove', async (req, res) => {
+  try {
+    await Products.deleteOne({ _id: req.body.id })
+    res.redirect('/catalog')
+  } catch (err) {
+    console.log(err)
+  }
+})
+
 //Получени отдельной странички с товаром
 router.get('/:id', async (req, res) => {
   //Создаем модель продуктов
