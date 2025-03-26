@@ -3,7 +3,7 @@ const router = Router()
 const Products = require('../models/productsModel')
 
 router.get('/', async (req, res) => {
-  const products = await Products.getAll()
+  const products = await Products.find().lean()
 
   res.render('catalog', {
     title: 'Католог товаров',
@@ -18,7 +18,7 @@ router.get('/:id/edit', async (req, res) => {
     return res.redirect('/')
   }
 
-  const product = await Products.getById(req.params.id)
+  const product = await Products.findById(req.params.id).lean()
 
   res.render('product-edit', {
     title: `Редактировать ${product.title}`,
@@ -28,14 +28,14 @@ router.get('/:id/edit', async (req, res) => {
 
 router.post('/edit', async (req, res) => {
   //Метод обработчика в модели productsModel
-  await Products.update(req.body)
+  await Products.findByIdAndUpdate(req.body.id, req.body).lean()
   res.redirect('/catalog')
 })
 
 //Получени отдельной странички с товаром
 router.get('/:id', async (req, res) => {
   //Создаем модель продуктов
-  const product = await Products.getById(req.params.id)
+  const product = await Products.findById(req.params.id).lean()
 
   res.render('product', {
     // Отдельный layouts

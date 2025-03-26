@@ -31,10 +31,10 @@
               <p class="price">{{priceProduct}}</p>
             </div>
             <div class="card-action action">
-              <a href="/catalog/{{id}}" _target='blank'>Подробнее</a>
-              <a href="/catalog/{{id}}/edit?allow=true">Редактировать курс</a>
+              <a href="/catalog/{{_id}}" _target='blank'>Подробнее</a>
+              <a href="/catalog/{{_id}}/edit?allow=true">Редактировать курс</a>
               <form action="/card/add" method="post">
-                <input type="hidden" name="id" id="id" value="{{id}}">
+                <input type="hidden" name="id" id="id" value="{{_id}}">
                 <button class="btn btn-primary" type="submit">Купить</button>
               </form>
             </div>
