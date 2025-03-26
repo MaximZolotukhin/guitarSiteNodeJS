@@ -40,15 +40,17 @@ app.use('/card', cardRouters)
 // Подключение к БД через mongoose
 async function start() {
   try {
-    const uri = 'mongodb://guitar:guitar777@localhost:27417/?authMechanism=DEFAULT'
+    const uri = 'mongodb://guitar:guitar777@localhost:27417/guitarShopDB?authSource=admin'
     await mongoose.connect(uri)
     console.log('Connected to MongoDB')
 
     // Слушатель событий
-    app.listen(3000, () => {
+    app.listen(PORT, () => {
       console.log(`Server is running on port ${PORT}`)
     })
   } catch (err) {
     console.log(err)
   }
 }
+
+start()

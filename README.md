@@ -9,3 +9,5 @@ docker run -d --name guitarShopDB -p 27417:27017
 -e MONGO_INITDB_ROOT_USERNAME=guitar
 -e MONGO_INITDB_ROOT_PASSWORD=guitar777
 -v $HOME/DOCKER/dockerMongoDB/datafiles602:/data/db mongo:latest
+
+'mongodb://admin:admin777@localhost:27418/coursesShop?authSource=admin&authMechanism=SCRAM-SHA-256'

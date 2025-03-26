@@ -11,10 +11,16 @@ router.get('/', (req, res) => {
 })
 
 router.post('/', async (req, res) => {
-  const products = new Products(req.body)
+  const { manufactered, modelProduct, descriptionProduct, priceProduct, imgProduct } = req.body
+  const products = new Products({ manufactered, modelProduct, descriptionProduct, priceProduct, imgProduct })
 
-  await products.save()
-  res.redirect('/catalog')
+  // Сохранинеие данных в БД
+  try {
+    await products.save()
+    res.redirect('/catalog')
+  } catch (err) {
+    console.log(err)
+  }
 })
 
 module.exports = router
