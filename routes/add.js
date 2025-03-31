@@ -12,7 +12,14 @@ router.get('/', (req, res) => {
 
 router.post('/', async (req, res) => {
   const { manufactered, modelProduct, descriptionProduct, priceProduct, imgProduct } = req.body
-  const products = new Products({ manufactered, modelProduct, descriptionProduct, priceProduct, imgProduct })
+  const products = new Products({
+    manufactered,
+    modelProduct,
+    descriptionProduct,
+    priceProduct,
+    imgProduct,
+    userId: req.user._id,
+  })
 
   // Сохранинеие данных в БД
   try {

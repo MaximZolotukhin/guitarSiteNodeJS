@@ -13,7 +13,7 @@ const userShema = new Schema({
     items: [
       {
         count: {
-          type: Nember,
+          type: Number,
           required: true,
           default: 1,
         },

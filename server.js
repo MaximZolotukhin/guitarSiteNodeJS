@@ -19,12 +19,24 @@ const addRouters = require('./routes/add')
 const catalogRouters = require('./routes/catalog')
 const contactsRouters = require('./routes/contacts')
 const cardRouters = require('./routes/card')
+const User = require('./models/userModel')
 //Регистрация движка
 app.engine('hbs', hbs.engine)
 // Модуль который будет отрисовывать HTML страницы
 app.set('view engine', 'hbs')
 // Настройка папки по умолчанию
 app.set('views', 'views')
+//Подключаем мiddlewar
+app.use(async (req, res, next) => {
+  // Получаем пользователя
+  try {
+    const user = await User.findById('67eb02b91178acc0a87fa343')
+    req.user = user
+    next()
+  } catch (err) {
+    console.log(err)
+  }
+})
 
 // Регистрация папки public
 app.use(express.static(path.join(__dirname, 'public')))
@@ -43,6 +55,18 @@ async function start() {
     const uri = 'mongodb://guitar:guitar777@localhost:27417/guitarShopDB?authSource=admin'
     await mongoose.connect(uri)
     console.log('Connected to MongoDB')
+
+    //Создание пользователя поумолчания
+    const candidate = await User.findOne()
+    if (!candidate) {
+      const user = new User({
+        email: 'Veles',
+        name: 'Veles@rod.rus',
+        cart: { items: [] },
+      })
+
+      await user.save()
+    }
 
     // Слушатель событий
     app.listen(PORT, () => {

@@ -3,7 +3,7 @@ const router = Router()
 const Products = require('../models/productsModel')
 
 router.get('/', async (req, res) => {
-  const products = await Products.find().lean()
+  const products = await Products.find().lean().populate('userId', 'email name')
 
   res.render('catalog', {
     title: 'Католог товаров',
