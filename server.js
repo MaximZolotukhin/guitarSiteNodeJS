@@ -32,7 +32,7 @@ app.set('views', 'views')
 app.use(async (req, res, next) => {
   // Получаем пользователя
   try {
-    const user = await User.findById('67eb02b91178acc0a87fa343')
+    const user = await User.findById('67f28328cf6332bf8445e7cb')
     // добавляю данные о пользователе в req.user
     req.user = user
     next()

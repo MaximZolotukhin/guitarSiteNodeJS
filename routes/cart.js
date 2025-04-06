@@ -5,11 +5,17 @@ const mongoose = require('mongoose')
 
 const router = Router()
 
+/**
+ * Подоготовка данных для отображения
+ * @param {*} cart
+ * @returns
+ */
 function mapCartItems(cart) {
   return cart.items.map((product) => {
-    return { ...product.productId._doc, count: product.count }
+    return { ...product.productId._doc, count: product.count, id: product.productId.id }
   })
 }
+
 /**
  * Рассчет стоимости товаров в корзине
  * @param {*} product
@@ -22,6 +28,7 @@ const computedPrice = (products) => {
 
 router.post('/add', async (req, res) => {
   const product = await Products.findById(req.body.id)
+
   await req.user.addToCart(product)
 
   res.redirect('/cart')
@@ -40,7 +47,13 @@ router.get('/', async (req, res) => {
 })
 
 router.delete('/remove/:id', async (req, res) => {
-  const cart = await Card.remove(req.params.id)
+  // Метод удалинея данных из корзины
+  await req.user.removeFromCart(req.params.id)
+  const user = await req.user.populate('cart.items.productId')
+
+  const products = mapCartItems(user.cart)
+
+  const cart = { products, price: computedPrice(products) }
 
   res.status(200).json(cart)
 })

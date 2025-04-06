@@ -2,7 +2,7 @@
 const { Schema, model } = require('mongoose')
 
 //Созадем описание таблицы
-const product = new Schema({
+const productSchema = new Schema({
   manufactered: {
     type: String,
     required: true,
@@ -28,4 +28,15 @@ const product = new Schema({
   },
 })
 
-module.exports = model('Product', product)
+// Обработка данных преданных даннхы из Schema клинету
+productSchema.method('toClient', function () {
+  // Получает данные из Schema без служебной инофрмации
+  const products = this.toObject()
+
+  products.id = products._id
+  delete products._id
+
+  return products
+})
+
+module.exports = model('Product', productSchema)
