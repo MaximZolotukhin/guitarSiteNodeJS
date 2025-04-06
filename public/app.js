@@ -1,32 +1,31 @@
-const toCorrency = (price) => {
-  return new new Intl.NumberFormat('ru-Ru', {
+// Форматирование цены
+const toCurrency = (price) => {
+  return new Intl.NumberFormat('ru-Ru', {
     currency: 'rub',
     style: 'currency',
-  }).format(node.textContent)
+  }).format(price)
 }
-
-//Обработка цены
-document.querySelectorAll('.price>span').forEach((node) => {
-  node.textContent = toCorrency(node.textContent)
+document.querySelectorAll('.price > span').forEach((node) => {
+  node.textContent = toCurrency(node.textContent)
 })
 
 // Обработка кнопки удаление товара
-const $card = document.querySelector('#card')
+const $cart = document.querySelector('#cart')
 
-if ($card) {
-  $card.addEventListener('click', (event) => {
+if ($cart) {
+  $cart.addEventListener('click', (event) => {
     //Ограничиваем область срабатывания только на кнопке
     if (event.target.classList.contains('js-remove')) {
       const id = event.target.dataset.id
 
-      fetch('/card/remove/' + id, {
+      fetch('/cart/remove/' + id, {
         method: 'delete',
       })
         .then((res) => res.json())
-        .then((card) => {
+        .then((cart) => {
           //Динамическое изменение данных в корзине
-          if (card.products.length) {
-            const html = card.products
+          if (cart.products.length) {
+            const html = cart.products
               .map((data) => {
                 return `
                 <tr>
@@ -40,10 +39,10 @@ if ($card) {
               })
               .join('')
 
-            $card.querySelector('tbody').innerHTML = html
-            $card.querySelector('price>span').innerHTML = toCorrency(card.price)
+            $cart.querySelector('tbody').innerHTML = html
+            $cart.querySelector('price>span').innerHTML = toCorrency(cart.price)
           } else {
-            $card.innerHTML = '<p>Корзина пуста</p>'
+            $cart.innerHTML = '<p>Корзина пуста</p>'
           }
         })
     }

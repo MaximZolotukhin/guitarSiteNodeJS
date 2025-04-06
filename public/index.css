@@ -26,7 +26,11 @@
   font-size: 20px;
 }
 
-.card-image img {
+.cart {
+  width: 100%;
+}
+
+.cart-image img {
   height: 300px;
 }
 
@@ -59,7 +63,7 @@
   margin-top: 20px;
 }
 
-.card-action.action {
+.cart-action.action {
   display: flex;
   align-items: center;
   justify-content: space-between;

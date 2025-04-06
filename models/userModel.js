@@ -1,6 +1,6 @@
 const { Schema, model } = require('mongoose')
 
-const userShema = new Schema({
+const userSchema = new Schema({
   email: {
     type: String,
     required: true,
@@ -17,10 +17,25 @@ const userShema = new Schema({
           required: true,
           default: 1,
         },
-        coursesId: { type: Schema.Types.ObjectId, ref: 'Product', required: true },
+        productId: { type: Schema.Types.ObjectId, ref: 'Product', required: true },
       },
     ],
   },
 })
 
-module.exports = model('User', userShema)
+userSchema.methods.addToCart = function (product) {
+  const clonedItems = [...this.cart.items]
+  const idx = clonedItems.findIndex((item) => {
+    return item.productId.toString() === product._id.toString()
+  })
+  if (idx >= 0) {
+    clonedItems[idx].count++
+  } else {
+    clonedItems.push({ productId: product._id, count: 1 })
+  }
+
+  this.cart = { items: clonedItems }
+  return this.save()
+}
+
+module.exports = model('User', userSchema)

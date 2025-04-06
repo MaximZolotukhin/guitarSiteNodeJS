@@ -18,8 +18,10 @@ const homeRouters = require('./routes/home')
 const addRouters = require('./routes/add')
 const catalogRouters = require('./routes/catalog')
 const contactsRouters = require('./routes/contacts')
-const cardRouters = require('./routes/card')
+const cartRouters = require('./routes/cart')
+
 const User = require('./models/userModel')
+
 //Регистрация движка
 app.engine('hbs', hbs.engine)
 // Модуль который будет отрисовывать HTML страницы
@@ -31,6 +33,7 @@ app.use(async (req, res, next) => {
   // Получаем пользователя
   try {
     const user = await User.findById('67eb02b91178acc0a87fa343')
+    // добавляю данные о пользователе в req.user
     req.user = user
     next()
   } catch (err) {
@@ -47,7 +50,7 @@ app.use('/', homeRouters)
 app.use('/add', addRouters)
 app.use('/catalog', catalogRouters)
 app.use('/contacts', contactsRouters)
-app.use('/card', cardRouters)
+app.use('/cart', cartRouters)
 
 // Подключение к БД через mongoose
 async function start() {
@@ -58,6 +61,7 @@ async function start() {
 
     //Создание пользователя поумолчания
     const candidate = await User.findOne()
+
     if (!candidate) {
       const user = new User({
         email: 'Veles',

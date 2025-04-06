@@ -19,21 +19,21 @@
         <div class="row">
         {{#each products}}
         {{!-- TODO переделать стили под свои --}}
-        <div class="col s6 m8 l12 product">
-          <div class="card">
-            <div class="card-image">
+        <div class="col s6 m9 l12 product">
+          <div class="cart">
+            <div class="cart-image">
               <img src="{{imgProduct}}" alt="{{modelProduct}}">
             </div>
-            <div class="card-content">
-              <span class="card-title">{{manufactered}}</span>
+            <div class="cart-content">
+              <span class="cart-title">{{manufactered}}</span>
               <p class="model">{{modelProduct}}</p>
               <p class="descriptio">{{descriptionGuitar}}</p>
-              <p class="price">{{priceProduct}}</p>
+              <p class='price'>Цена: <span>{{priceProduct}}</span></p>
             </div>
-            <div class="card-action action">
+            <div class="cart-action action">
               <a href="/catalog/{{_id}}" _target='blank'>Подробнее</a>
               <a href="/catalog/{{_id}}/edit?allow=true">Редактировать курс</a>
-              <form action="/card/add" method="post">
+              <form action="/cart/add" method="post">
                 <input type="hidden" name="id" id="id" value="{{_id}}">
                 <button class="btn btn-primary" type="submit">Купить</button>
               </form>

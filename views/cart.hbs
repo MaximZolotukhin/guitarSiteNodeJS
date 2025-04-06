@@ -4,7 +4,7 @@
      {{> navbar}}
   </header>
 <h1>Корзина</h1>
-<div id='card'>
+<div id='cart'>
   {{#if products.length}}
     <table>
       <thead>
@@ -12,7 +12,7 @@
           <th>Производитель</th>
           <th>Модель</th>
           <th>Количество</th>
-          <th>Цена за еденицу</th>
+          <th>Цена за единицу</th>
           <th>Действие</th>
         </tr>
       </thead>
@@ -28,6 +28,7 @@
         {{/each}}
       </tbody>
     </table>
+   <p class='price'><strong>Цена: </strong><span>{{price}}</span></p>
   {{else}}
     <p>Корзина</p>
   {{/if}}

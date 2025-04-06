@@ -49,7 +49,7 @@ router.get('/:id', async (req, res) => {
 
   res.render('product', {
     // Отдельный layouts
-    layout: 'productCard',
+    layout: 'productCart',
     title: product,
     product,
   })
