@@ -19,6 +19,7 @@ const addRouters = require('./routes/add')
 const catalogRouters = require('./routes/catalog')
 const contactsRouters = require('./routes/contacts')
 const cartRouters = require('./routes/cart')
+const ordersRouters = require('./routes/orders')
 
 const User = require('./models/userModel')
 
@@ -51,6 +52,7 @@ app.use('/add', addRouters)
 app.use('/catalog', catalogRouters)
 app.use('/contacts', contactsRouters)
 app.use('/cart', cartRouters)
+app.use('/orders', ordersRouters)
 
 // Подключение к БД через mongoose
 async function start() {
