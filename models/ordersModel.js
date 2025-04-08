@@ -1,9 +1,9 @@
 const { Schema, model } = require('mongoose')
 
 const orderSchema = new Schema({
-  courses: [
+  products: [
     {
-      course: {
+      product: {
         type: Object,
         required: true,
       },
@@ -21,10 +21,10 @@ const orderSchema = new Schema({
       required: true,
     },
   },
-  data: {
+  date: {
     type: Date,
     default: Date.now,
   },
 })
 
-module.exports = ('Order', orderSchema)
+module.exports = model('Order', orderSchema)

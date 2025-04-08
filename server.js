@@ -66,8 +66,8 @@ async function start() {
 
     if (!candidate) {
       const user = new User({
-        email: 'Veles',
-        name: 'Veles@rod.rus',
+        name: 'Veles',
+        email: 'Veles@rod.rus',
         cart: { items: [] },
       })
 

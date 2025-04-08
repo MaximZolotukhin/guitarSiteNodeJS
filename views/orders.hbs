@@ -1,1 +1,56 @@
-<h1>Заказы</h1>
+<body>
+  <header>
+    <h1>Сайт Музыкальных инструментов</h1>
+    {{> navbar}}
+  </header>
+  <main>
+    <article>
+      <article class="main-block">
+      <section class="main-left-block">
+        <div>
+          <h2>Катергории</h2>
+        </div>
+        <div>
+          <h2>Производители</h2>
+        </div>
+      </section> 
+      <section class="main-right-block">
+      <h1>{{title}}</h1>
+      {{#if orders.length}}
+        {{#each orders}}
+          <div class='col s10 offset-s3'>
+            <div class='card'>
+              <div class='card-content'>
+                <span class='card-title'>Заказ <small>{{_id}}</small></span>
+                <p class='date'>Дата {{date}}</p>
+                <p><em>{{user.userId.name}}</em> {{user.userId.email}}</p>
+                <ol>
+                  {{#each products}}
+                    <li>
+                      Производитель:
+                      {{product.manufactered}}
+                      | Модель
+                      {{product.modelProduct}}
+                      | Цена за ед.
+                      {{product.priceProduct}}
+                      x
+                      {{count}}
+                    </li>
+                  {{/each}}
+                </ol>
+                <hr />
+                <p class='price'>Итог: <span>{{price}}</span></p>
+              </div>
+            </div>
+          </div>
+        {{/each}}
+      {{else}}
+        <p>Заказов пока нет</p>
+      {{/if}}
+        </section>
+          </article>
+        </main>
+        <footer>
+          <h3>Тут будет футер</h3>
+        </footer>
+      </body>

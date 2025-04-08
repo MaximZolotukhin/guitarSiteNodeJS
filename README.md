@@ -1,6 +1,6 @@
 # guitarSiteNodeJS
 
-Приложение для описания гитар
+Интернет магазин музыкальных инструментов
 
 const url = 'mongodb://myuser:mypassword@localhost:27017/mydatabase';
 const uri = 'mongodb://guitar:guitar777@localhost:27417/guitarShopDB?authSource=admin';
