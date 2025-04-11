@@ -2,6 +2,13 @@
   padding: 0 2rem;
 }
 
+.header-top {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+}
+
 .main-block {
   display: flex;
   justify-content: space-between;
@@ -17,7 +24,7 @@
   width: 70%;
 }
 
-.header h1 {
+.container h1 {
   font-size: 30px;
 }
 
@@ -68,3 +75,11 @@
   align-items: center;
   justify-content: space-between;
 }
+
+.auth {
+  padding-top: 2rem;
+}
+
+/* .logo-text {
+  font-size: 30px;
+} */

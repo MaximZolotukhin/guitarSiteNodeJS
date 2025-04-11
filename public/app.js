@@ -61,3 +61,6 @@ const toDate = (date) => {
 }
 
 document.querySelectorAll('.date').forEach((node) => (node.textContent = toDate(node.textContent)))
+
+const tabsLogin = document.querySelectorAll('.tabs')
+M.Tabs.init(tabsLogin)

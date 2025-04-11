@@ -3,6 +3,7 @@ const express = require('express')
 const app = express()
 const path = require('path')
 const mongoose = require('mongoose')
+const session = require('express-session')
 
 // Объявляем порт
 const PORT = process.env.PORT | 3001
@@ -20,8 +21,11 @@ const catalogRouters = require('./routes/catalog')
 const contactsRouters = require('./routes/contacts')
 const cartRouters = require('./routes/cart')
 const ordersRouters = require('./routes/orders')
+const authRouters = require('./routes/auth')
 
 const User = require('./models/userModel')
+
+const varMiddlewar = require('./middleware/variables')
 
 //Регистрация движка
 app.engine('hbs', hbs.engine)
@@ -44,15 +48,30 @@ app.use(async (req, res, next) => {
 
 // Регистрация папки public
 app.use(express.static(path.join(__dirname, 'public')))
+// image
+// app.use(express.static(path.join(__dirname, 'public', 'img')))
 //Обработка POST запросов
 app.use(express.urlencoded({ extended: true }))
 //Подключаю роуты
+app.use(
+  session({
+    secret: 'ScorpionEvil',
+    resave: false,
+    saveUninitialized: false,
+  })
+)
+
+// Подключение middleware
+app.use(varMiddlewar)
+
+// Роуты
 app.use('/', homeRouters)
 app.use('/add', addRouters)
 app.use('/catalog', catalogRouters)
 app.use('/contacts', contactsRouters)
 app.use('/cart', cartRouters)
 app.use('/orders', ordersRouters)
+app.use('/auth', authRouters)
 
 // Подключение к БД через mongoose
 async function start() {
