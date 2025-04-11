@@ -34,17 +34,17 @@ app.set('view engine', 'hbs')
 // Настройка папки по умолчанию
 app.set('views', 'views')
 //Подключаем мiddlewar
-app.use(async (req, res, next) => {
-  // Получаем пользователя
-  try {
-    const user = await User.findById('67f28328cf6332bf8445e7cb')
-    // добавляю данные о пользователе в req.user
-    req.user = user
-    next()
-  } catch (err) {
-    console.log(err)
-  }
-})
+// app.use(async (req, res, next) => {
+//   // Получаем пользователя
+//   try {
+//     const user = await User.findById('67f28328cf6332bf8445e7cb')
+//     // добавляю данные о пользователе в req.user
+//     req.user = user
+//     next()
+//   } catch (err) {
+//     console.log(err)
+//   }
+// })
 
 // Регистрация папки public
 app.use(express.static(path.join(__dirname, 'public')))
@@ -79,19 +79,6 @@ async function start() {
     const uri = 'mongodb://guitar:guitar777@localhost:27417/guitarShopDB?authSource=admin'
     await mongoose.connect(uri)
     console.log('Connected to MongoDB')
-
-    //Создание пользователя поумолчания
-    const candidate = await User.findOne()
-
-    if (!candidate) {
-      const user = new User({
-        name: 'Veles',
-        email: 'Veles@rod.rus',
-        cart: { items: [] },
-      })
-
-      await user.save()
-    }
 
     // Слушатель событий
     app.listen(PORT, () => {
