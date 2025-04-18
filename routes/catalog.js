@@ -1,6 +1,8 @@
 const { Router } = require('express')
-const router = Router()
+const auth = require('../middleware/auth')
 const Products = require('../models/productsModel')
+
+const router = Router()
 
 router.get('/', async (req, res) => {
   const products = await Products.find().lean().populate('userId', 'email name')
@@ -26,14 +28,14 @@ router.get('/:id/edit', async (req, res) => {
   })
 })
 
-router.post('/edit', async (req, res) => {
+router.post('/edit', auth, async (req, res) => {
   //Метод обработчика в модели productsModel
   await Products.findByIdAndUpdate(req.body.id, req.body).lean()
   res.redirect('/catalog')
 })
 
 //Удаление объекта
-router.post('/remove', async (req, res) => {
+router.post('/remove', auth, async (req, res) => {
   try {
     await Products.deleteOne({ _id: req.body.id })
     res.redirect('/catalog')

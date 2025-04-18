@@ -4,9 +4,17 @@ const app = express()
 const path = require('path')
 const mongoose = require('mongoose')
 const session = require('express-session')
+const MongoStore = require('connect-mongodb-session')(session)
 
 // Объявляем порт
 const PORT = process.env.PORT | 3001
+const MONGODB_URI = 'mongodb://guitar:guitar777@localhost:27417/guitarShopDB?authSource=admin'
+const store = new MongoStore({
+  //имя коллекции в ДБ в которой будут хранится данные о сессиях
+  connection: 'session',
+  //Адрес ДБ
+  uri: MONGODB_URI,
+})
 
 // Настройка handelbars
 const exphbs = require('express-handlebars')
@@ -33,18 +41,6 @@ app.engine('hbs', hbs.engine)
 app.set('view engine', 'hbs')
 // Настройка папки по умолчанию
 app.set('views', 'views')
-//Подключаем мiddlewar
-// app.use(async (req, res, next) => {
-//   // Получаем пользователя
-//   try {
-//     const user = await User.findById('67f28328cf6332bf8445e7cb')
-//     // добавляю данные о пользователе в req.user
-//     req.user = user
-//     next()
-//   } catch (err) {
-//     console.log(err)
-//   }
-// })
 
 // Регистрация папки public
 app.use(express.static(path.join(__dirname, 'public')))
@@ -58,6 +54,7 @@ app.use(
     secret: 'ScorpionEvil',
     resave: false,
     saveUninitialized: false,
+    store,
   })
 )
 
@@ -76,8 +73,7 @@ app.use('/auth', authRouters)
 // Подключение к БД через mongoose
 async function start() {
   try {
-    const uri = 'mongodb://guitar:guitar777@localhost:27417/guitarShopDB?authSource=admin'
-    await mongoose.connect(uri)
+    await mongoose.connect(MONGODB_URI)
     console.log('Connected to MongoDB')
 
     // Слушатель событий

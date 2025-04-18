@@ -1,6 +1,7 @@
 //Обработчик роута для корзины
 const { Router } = require('express')
 const Products = require('../models/productsModel')
+const auth = require('../middleware/auth')
 const mongoose = require('mongoose')
 
 const router = Router()
@@ -26,7 +27,7 @@ const computedPrice = (products) => {
   }, 0)
 }
 
-router.post('/add', async (req, res) => {
+router.post('/add', auth, async (req, res) => {
   const product = await Products.findById(req.body.id)
 
   await req.user.addToCart(product)
@@ -34,7 +35,7 @@ router.post('/add', async (req, res) => {
   res.redirect('/cart')
 })
 
-router.get('/', async (req, res) => {
+router.get('/', auth, async (req, res) => {
   const user = await req.user.populate('cart.items.productId')
   const products = await mapCartItems(user.cart)
 
@@ -46,7 +47,7 @@ router.get('/', async (req, res) => {
   })
 })
 
-router.delete('/remove/:id', async (req, res) => {
+router.delete('/remove/:id', auth, async (req, res) => {
   // Метод удалинея данных из корзины
   await req.user.removeFromCart(req.params.id)
   const user = await req.user.populate('cart.items.productId')

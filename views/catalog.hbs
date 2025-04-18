@@ -12,34 +12,36 @@
       </section>
       <section class="main-right-block">
         <h2>Каталог товаров</h2>
-        {{#if products.length}}
-        <div class="row">
+        {{#if products.length}} 
         {{#each products}}
+        <div class="row"> 
         {{!-- TODO переделать стили под свои --}}
-        <div class="col s6 m9 l12 product">
-          <div class="cart">
-            <div class="cart-image">
-              <img src="{{imgProduct}}" alt="{{modelProduct}}">
+       
+          <div class="col l12 offset-s3 product">      
+            <div class="card">
+              <div class="card-image">
+                <img src="{{imgProduct}}" alt="{{modelProduct}}">
+              </div>
+              <div class="card-content">
+                <span class="card-title">{{manufactered}}</span>
+                <p class="model">{{modelProduct}}</p>
+                <p class="descriptio">{{descriptionGuitar}}</p>
+                <p class='price'>Цена: <span>{{priceProduct}}</span></p>
+              </div>
+              <div class="card-action action">
+                <a href="/catalog/{{_id}}" _target='blank'>Подробнее</a>
+                {{#if @root.isAuth}}
+                <a href="/catalog/{{_id}}/edit?allow=true">Редактировать курс</a>
+                <form action="/cart/add" method="post">
+                  <input type="hidden" name="id" id="id" value="{{_id}}">
+                  <button class="btn btn-primary" type="submit">Купить</button>
+                </form>
+                {{/if}}
+              </div>
             </div>
-            <div class="cart-content">
-              <span class="cart-title">{{manufactered}}</span>
-              <p class="model">{{modelProduct}}</p>
-              <p class="descriptio">{{descriptionGuitar}}</p>
-              <p class='price'>Цена: <span>{{priceProduct}}</span></p>
-            </div>
-            <div class="cart-action action">
-              <a href="/catalog/{{_id}}" _target='blank'>Подробнее</a>
-              <a href="/catalog/{{_id}}/edit?allow=true">Редактировать курс</a>
-              <form action="/cart/add" method="post">
-                <input type="hidden" name="id" id="id" value="{{_id}}">
-                <button class="btn btn-primary" type="submit">Купить</button>
-              </form>
-            </div>
-            
           </div>
         </div>
         {{/each}}
-        </div>
         {{else}}
           <p>Товаров пока нет</p>
         {{/if}}
