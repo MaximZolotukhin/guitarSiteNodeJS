@@ -33,7 +33,9 @@ const authRouters = require('./routes/auth')
 
 const User = require('./models/userModel')
 
+//MIDDLEWARE
 const varMiddlewar = require('./middleware/variables')
+const userMiddlewar = require('./middleware/user')
 
 //Регистрация движка
 app.engine('hbs', hbs.engine)
@@ -60,6 +62,7 @@ app.use(
 
 // Подключение middleware
 app.use(varMiddlewar)
+app.use(userMiddlewar)
 
 // Роуты
 app.use('/', homeRouters)
