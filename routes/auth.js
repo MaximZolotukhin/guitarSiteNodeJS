@@ -18,19 +18,31 @@ router.get('/logout', async (req, res) => {
 
 //Авторизация
 router.post('/login', async (req, res) => {
-  //Если залогинились в систему то в переменной isAuthenticated будет хранится true
-  const user = await User.findById('67f28328cf6332bf8445e7cb')
-  req.session.user = user
-  req.session.isAuthenticated = true
+  try {
+    const { email, password } = req.body
 
-  //Сохранение данных в session что бы не приходила загрузка redirecta до схоранения данных в session
-  req.session.save((err) => {
-    if (err) {
-      throw err
+    const candidate = await User.findOne({ email })
+    if (candidate) {
+      const areSame = password === candidate.password
+      if (areSame) {
+        req.session.user = candidate
+        req.session.isAuthenticated = true
+        //Сохранение данных в session что бы не приходила загрузка redirecta до схоранения данных в session
+        req.session.save((err) => {
+          if (err) {
+            throw err
+          }
+          res.redirect('/')
+        })
+      } else {
+        res.redirect('/auth/login#login')
+      }
+    } else {
+      res.redirect('/auth/login#login')
     }
-
-    res.redirect('/')
-  })
+  } catch (error) {
+    console.log(error)
+  }
 })
 
 //Регистрация
