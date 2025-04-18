@@ -30,10 +30,23 @@
     <div id='register' class='col s6 offset-s3'>
       <h1>Создать аккаунт</h1>
       <form action='/auth/register' method='post'>
+
         <div class='input-field'>
           <input id='regEmail' type='email' name='email' class='validate' required />
           <label for='regEmail'>Email</label>
           <span class='helper-text' data-error='Введит email'></span>
+        </div>
+
+        <div class='input-field'>
+          <input id='refName' type='text' name='refName' class='validate' required min='1' />
+          <label for='refName'>Имя</label>
+          <span class='helper-text' data-error='Введите имя'></span>
+        </div>
+
+        <div class='input-field'>
+          <input id='confirm' type='password' name='confirm' class='validate' required min='1' />
+          <label for='confirm'>Пароль</label>
+          <span class='helper-text' data-error='Введите пароль'></span>
         </div>
 
         <div class='input-field'>
@@ -42,11 +55,7 @@
           <span class='helper-text' data-error='Введите пароль'></span>
         </div>
 
-        <div class='input-field'>
-          <input id='confirm' type='password' name='confirm' class='validate' required min='1' />
-          <label for='confirm'>Пароль</label>
-          <span class='helper-text' data-error='Введите пароль'></span>
-        </div>
+      
 
         <button class='btn btn-primary' type='submit'>Зарегистрироваться</button>
       </form>

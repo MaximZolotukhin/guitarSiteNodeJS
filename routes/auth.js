@@ -16,6 +16,7 @@ router.get('/logout', async (req, res) => {
   })
 })
 
+//Авторизация
 router.post('/login', async (req, res) => {
   //Если залогинились в систему то в переменной isAuthenticated будет хранится true
   const user = await User.findById('67f28328cf6332bf8445e7cb')
@@ -30,6 +31,45 @@ router.post('/login', async (req, res) => {
 
     res.redirect('/')
   })
+})
+
+//Регистрация
+router.post('/register', async (req, res) => {
+  try {
+    const { email, password, repeat, name } = req.body
+    const candidate = await User.findOne({ email })
+
+    if (candidate) {
+      res.redirect('/auth/login#register')
+    } else {
+      const user = new User({
+        email,
+        name,
+        password,
+        cart: {
+          items: [],
+        },
+      })
+
+      await user.save()
+      res.redirect('/auth/login#login')
+    }
+  } catch (error) {
+    console.log(error)
+  }
+  //Если залогинились в систему то в переменной isAuthenticated будет хранится true
+  // const user = await User.findById('67f28328cf6332bf8445e7cb')
+  // req.session.user = user
+  // req.session.isAuthenticated = true
+
+  // //Сохранение данных в session что бы не приходила загрузка redirecta до схоранения данных в session
+  // req.session.save((err) => {
+  //   if (err) {
+  //     throw err
+  //   }
+
+  //   res.redirect('/')
+  // })
 })
 
 module.exports = router
