@@ -20,13 +20,14 @@
             <td>{{modelProduct}}</td>
             <td>{{count}}</td>
             <td>{{priceProduct}}</td>
-            <td><button class='bth btn-small js-remove' data-id='{{_id}}'>Удалить</button></td>
+            <td><button class='bth btn-small js-remove' data-id='{{_id}}' data-csrf="{{@root.csrf}}">Удалить</button></td>
           </tr>
         {{/each}}
       </tbody>
     </table>
    <p class='price'><strong>Цена: </strong><span>{{price}}</span></p>
    <form action="/orders" method="POST">
+    <input type="hidden" name="_csrf" value="{{csrf}}" >
     <button type="submit" class="btn">Сделать заказ</button>
    </form>
   {{else}}

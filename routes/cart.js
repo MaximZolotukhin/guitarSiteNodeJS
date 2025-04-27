@@ -53,7 +53,6 @@ router.delete('/remove/:id', auth, async (req, res) => {
   const user = await req.user.populate('cart.items.productId')
 
   const products = mapCartItems(user.cart)
-
   const cart = { products, price: computedPrice(products) }
 
   res.status(200).json(cart)

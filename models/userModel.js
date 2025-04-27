@@ -39,6 +39,7 @@ userSchema.methods.addToCart = function (product) {
   return this.save()
 }
 
+// Метод для удаления данных из корзины
 userSchema.methods.removeFromCart = function (id) {
   let items = [...this.cart.items]
 
@@ -46,7 +47,7 @@ userSchema.methods.removeFromCart = function (id) {
     return item.productId.toString() === id.toString()
   })
 
-  if (idx) {
+  if (items[idx].count === 1) {
     items = items.filter((product) => product.productId.toString() !== id.toString())
   } else {
     items[idx].count--

@@ -17,9 +17,11 @@ if ($cart) {
     //Ограничиваем область срабатывания только на кнопке
     if (event.target.classList.contains('js-remove')) {
       const id = event.target.dataset.id
+      const csrf = event.target.dataset.csrf
 
       fetch('/cart/remove/' + id, {
         method: 'delete',
+        headers: { 'X-XSRF-TOKEN': csrf },
       })
         .then((res) => res.json())
         .then((cart) => {

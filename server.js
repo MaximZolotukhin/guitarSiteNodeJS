@@ -5,6 +5,7 @@ const path = require('path')
 const mongoose = require('mongoose')
 const session = require('express-session')
 const MongoStore = require('connect-mongodb-session')(session)
+const csrf = require('csurf')
 
 // Объявляем порт
 const PORT = process.env.PORT | 3001
@@ -61,6 +62,7 @@ app.use(
 )
 
 // Подключение middleware
+app.use(csrf())
 app.use(varMiddlewar)
 app.use(userMiddlewar)
 
