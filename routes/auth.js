@@ -1,6 +1,8 @@
 const { Router } = require('express')
 const User = require('../models/userModel')
 const bcrypt = require('bcryptjs') // Шифрование пароля
+//Блок 7 Урок 1
+const { body, validationResult } = require('express-validator')
 
 const router = Router()
 
@@ -52,11 +54,18 @@ router.post('/login', async (req, res) => {
 })
 
 //Регистрация
-router.post('/register', async (req, res) => {
+router.post('/register', body('email').isEmail(), async (req, res) => {
   try {
-    const { email, password, repeat, name } = req.body
+    //Блок 7 Урок 1
+    const { email, password, confirm, name } = req.body
     const candidate = await User.findOne({ email })
-
+    //Обработака ошибок из валидатора
+    const errors = validationResult(req)
+    // Проверка на наличие ошибок
+    if (!errors.isEmpty()) {
+      req.flash('registerError', errors.array()[0].msg)
+      return res.status(422).redirect('/auth/login#register')
+    }
     if (candidate) {
       req.flash('registerError', 'Данный Email уже занят')
       res.redirect('/auth/login#register')
