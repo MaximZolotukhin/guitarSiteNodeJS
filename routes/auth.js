@@ -1,8 +1,9 @@
 const { Router } = require('express')
 const User = require('../models/userModel')
 const bcrypt = require('bcryptjs') // Шифрование пароля
-//Блок 7 Урок 1
-const { body, validationResult } = require('express-validator')
+//Урок 2
+const { validationResult } = require('express-validator')
+const { reqisterValidators } = require('../utils/validator')
 
 const router = Router()
 
@@ -54,9 +55,9 @@ router.post('/login', async (req, res) => {
 })
 
 //Регистрация
-router.post('/register', body('email').isEmail(), async (req, res) => {
+//Урок 2
+router.post('/register', reqisterValidators, async (req, res) => {
   try {
-    //Блок 7 Урок 1
     const { email, password, confirm, name } = req.body
     const candidate = await User.findOne({ email })
     //Обработака ошибок из валидатора
