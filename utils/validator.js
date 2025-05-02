@@ -65,3 +65,11 @@ exports.loginValidators = [
     }
   }),
 ]
+
+//Урок 5
+exports.productsValidators = [
+  body('manufactered').isLength({ min: 2 }).withMessage('Минимальная длинна названия 3 символа').trim(),
+  body('modelProduct').isLength({ min: 2 }).withMessage('Минимальная длинна названия 3 символа').trim(),
+  body('priceProduct', 'Введите корректную цену').isNumeric(),
+  body('imgProduct', 'Введите URL картинки').isURL(),
+]
