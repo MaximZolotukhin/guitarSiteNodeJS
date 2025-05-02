@@ -1,9 +1,8 @@
 const { Router } = require('express')
 const User = require('../models/userModel')
 const bcrypt = require('bcryptjs') // Шифрование пароля
-//Урок 2
 const { validationResult } = require('express-validator')
-const { reqisterValidators } = require('../utils/validator')
+const { registerValidators } = require('../utils/validator')
 
 const router = Router()
 
@@ -55,11 +54,11 @@ router.post('/login', async (req, res) => {
 })
 
 //Регистрация
-//Урок 2
-router.post('/register', reqisterValidators, async (req, res) => {
+router.post('/register', registerValidators, async (req, res) => {
   try {
-    const { email, password, confirm, name } = req.body
-    const candidate = await User.findOne({ email })
+    //Урок 3
+    const { email, password, name } = req.body
+
     //Обработака ошибок из валидатора
     const errors = validationResult(req)
     // Проверка на наличие ошибок
@@ -67,24 +66,19 @@ router.post('/register', reqisterValidators, async (req, res) => {
       req.flash('registerError', errors.array()[0].msg)
       return res.status(422).redirect('/auth/login#register')
     }
-    if (candidate) {
-      req.flash('registerError', 'Данный Email уже занят')
-      res.redirect('/auth/login#register')
-    } else {
-      // Создаем зашиврованный пароль
-      const hashPassword = await bcrypt.hash(password, 10)
-      const user = new User({
-        email,
-        name,
-        password: hashPassword,
-        cart: {
-          items: [],
-        },
-      })
+    // Создаем зашиврованный пароль
+    const hashPassword = await bcrypt.hash(password, 10)
+    const user = new User({
+      email,
+      name,
+      password: hashPassword,
+      cart: {
+        items: [],
+      },
+    })
 
-      await user.save()
-      res.redirect('/auth/login#login')
-    }
+    await user.save()
+    res.redirect('/auth/login#login')
   } catch (error) {
     console.log(error)
   }
