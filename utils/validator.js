@@ -38,3 +38,30 @@ exports.registerValidators = [
     // Урок 4
     .trim(),
 ]
+
+//Проверка при входе
+exports.loginValidators = [
+  body('email')
+    .isEmail()
+    .withMessage('Введите корректный email')
+    .custom(async (value, { req }) => {
+      try {
+        const user = await User.findOne({ email: value })
+        if (!user) {
+          return Promise.reject('Пользователя с таким email не найдено')
+        }
+      } catch (error) {
+        console.log(error)
+      }
+    }),
+  body('password', 'Пароль должне быть минимум 6 символов').custom(async (value, { req }) => {
+    try {
+      const user = await User.findOne({ password: value })
+      if (!user) {
+        return Promise.reject('Неверный пароль')
+      }
+    } catch (error) {
+      console.log(error)
+    }
+  }),
+]

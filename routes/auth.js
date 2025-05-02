@@ -2,7 +2,7 @@ const { Router } = require('express')
 const User = require('../models/userModel')
 const bcrypt = require('bcryptjs') // Шифрование пароля
 const { validationResult } = require('express-validator')
-const { registerValidators } = require('../utils/validator')
+const { registerValidators, loginValidators } = require('../utils/validator')
 
 const router = Router()
 
@@ -22,9 +22,16 @@ router.get('/logout', async (req, res) => {
 })
 
 //Авторизация
-router.post('/login', async (req, res) => {
+router.post('/login', loginValidators, async (req, res) => {
   try {
     const { email, password } = req.body
+    //Обработака ошибок из валидатора
+    const errors = validationResult(req)
+    // Проверка на наличие ошибок
+    if (!errors.isEmpty()) {
+      req.flash('loginError', errors.array()[0].msg)
+      return res.status(422).redirect('/auth/login#login')
+    }
 
     const candidate = await User.findOne({ email })
     if (candidate) {
@@ -56,7 +63,6 @@ router.post('/login', async (req, res) => {
 //Регистрация
 router.post('/register', registerValidators, async (req, res) => {
   try {
-    //Урок 3
     const { email, password, name } = req.body
 
     //Обработака ошибок из валидатора
